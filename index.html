@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Show Pictures</title>
+		<link rel="stylesheet" type="text/css" href="_css/style.css">
+		<style type="text/css">
+			#shadowboxforum .drawer {
+				width: 999999999px;
+
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<header id="title">
+				<h1>Show Photos</h1>
+			</header>
+			<section id="window">
+				<a href="#" class="link" id="judas">
+					<div class="titleback">
+						<img src="_images/judas/1.png" alt="" width="300">
+						<h1>The Last Days of Judas Iscariot</h1>
+					</div>
+				</a>
+				<a href="#" class="link" id="forum">
+					<div class="titleback">
+						<img src="_images/forum/1.png" alt="" width="300">
+						<h1>A Funny Thing... Forum</h1>
+					</div>
+				</a>
+				<a href="#" class="link" id="crucible">
+					<div class="titleback">
+						<img src="_images/crucible/2.png" alt="" width="300">
+						<h1>The Crucible</h1>
+					</div>
+				</a>
+			<h2>Joel</h2>
+			<h3>Abelson</h3>
+			</section>
+			<div id="shadowboxjudas">
+				<div class="shadowcontainer">
+					<div class="shadowboxbg">shadowbox</div>
+					<img src="_images/misc/close.png" alt="" id="close2">
+					<div class="row">
+						<div><img src="_images/judas/logo.png" alt="" id="judaslogo"></div>
+						<div class="gallery">
+							<img src="_images/judas/5.png" alt="">
+							<img src="_images/judas/4.png" alt="">
+							<img src="_images/judas/3.png" alt="">
+							<img src="_images/judas/2.png" alt="">
+							<img src="_images/judas/1.png" alt="">
+						</div>
+					</div>
+				</div><!-- END .shadowcontainer -->
+			</div><!-- END #shadowboxjudas -->
+			<div id="shadowboxforum">
+				<div class="shadowcontainer">
+					<div class="shadowboxbg">shadowbox</div>
+					<img src="_images/misc/close.png" alt="" id="close1">
+					<div class="row">
+						<div><img src="_images/forum/logo.png" alt="" id="forumlogo"></div>
+						<div class="gallery">
+							<div class="drawer">
+								<img src="_images/forum/1.png" alt="">
+								<img src="_images/forum/2.png" alt="">
+								<img src="_images/forum/3.png" alt="">
+								<img src="_images/forum/4.png" alt="">
+								<img src="_images/forum/5.png" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="shadowboxcrucible">
+				<div class="shadowcontainer">
+					<div class="shadowboxbg">shadowbox</div>
+					<img src="_images/misc/close.png" alt="" id="close3">
+					<div class="row">
+						<div><img src="_images/crucible/logo.png" alt="" id="cruciblelogo"></div>
+						<div class="gallery">
+							<img src="_images/crucible/5.png" alt="">
+							<img src="_images/crucible/4.png" alt="">
+							<img src="_images/crucible/3.png" alt="">
+							<img src="_images/crucible/1.png" alt="">
+							<img src="_images/crucible/2.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="_js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(setUp);
+
+				function setUp(){
+					console.log('hello');
+
+					// Judas Lightbox
+					function judasOpen(){
+						console.log('judasOpen done');
+						var image = $('#shadowboxjudas .gallery img:last');
+						$('#shadowboxjudas').animate({'opacity':'1','z-index':'1'}, 50,
+							function(){
+							$('#shadowboxjudas .gallery').animate({'opacity':'1'}, 800,
+								function (){
+								image.animate({'opacity':'0'}, 1000, function(){
+									image.prependTo('#shadowboxjudas .gallery');
+									image.css({'opacity':'1'});
+									setTimeout(judasOpen, 3000);
+									});
+								})
+							});
+					}
+					function judasClose(){
+						$('#shadowboxjudas').animate({'opacity':'0','z-index':'-1'},500)
+						judasClose();
+					}
+					$('#judas').click(judasOpen);
+					$('#close2').click(judasClose);
+
+					// Forum Lightbox
+					function forumOpen(){
+						console.log('forumOpen done');
+						var image2 = $('#shadowboxforum .gallery img:first');
+						$('#shadowboxforum').animate({'opacity':'1','z-index':'1'}, 50,
+							function(){
+							$('#shadowboxforum .gallery').animate({'opacity':'1'}, 800,
+								function (){
+								image2.animate({'margin-left':'-630px'}, 1000, function(){
+									image2.appendTo('#shadowboxforum .gallery .drawer');
+									image2.css({'margin-left':'0px'});
+									setTimeout(forumOpen, 3000);
+									});
+								})
+							});
+					}
+					function forumClose(){
+						$('#shadowboxforum').animate({'opacity':'0','z-index':'-1'},500)
+						forumClose();
+					}
+					$('#forum').click(forumOpen);
+					$('#close1').click(forumClose);
+
+					// Crucible Lightbox
+					function crucibleOpen(){
+						console.log('crucibleOpen done');
+						var image3 = $('#shadowboxcrucible .gallery img:first');
+						$('#shadowboxcrucible').animate({'opacity':'1','z-index':'1'}, 50,
+							function(){
+							$('#shadowboxcrucible .gallery').animate({'opacity':'1'}, 800,
+								function (){
+								image3.animate({'margin-top':'-424px'}, 1000, function(){
+									image3.appendTo('#shadowboxcrucible .gallery');
+									image3.css({'margin-top':'0px'});
+									setTimeout(crucibleOpen, 3000);
+									console.log('moving thru');
+									});
+								})
+							});
+					}
+					function crucibleClose(){
+						$('#shadowboxcrucible').animate({'opacity':'0','z-index':'-1'},500)
+						crucibleClose();
+					}
+
+					$('#crucible').click(crucibleOpen);
+					$('#close3').click(crucibleClose);
+				};
+		</script>
+	</body>
+</html>
